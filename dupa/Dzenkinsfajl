@@ -14,10 +14,13 @@ pipeline {
       steps{
         checkout([$class: 'GitSCM', branches: [[name: brancz]],
                   doGenerateSubmoduleConfigurations: false,
-                  extensions: [[$class: 'DisableRemotePoll'],
+                  extensions: [
+                                [$class: 'DisableRemotePoll'],
                                 [$class: 'PathRestriction',
                                 excludedRegions: '',
-                                includedRegions: "${app_path}/.* dupa/.*"]],
+                                includedRegions: "${app_path}/.* dupa/.*"],
+                                [$class: 'RelativeTargetDirectory', relativeTargetDir: 'subdir']
+                            ],
                   submoduleCfg: [],
                   userRemoteConfigs: [[credentialsId: '9f25d4e7-848a-4b5c-af16-f6555d3d1176',
                                        url: 'https://github.com/dryjaja1/jenkinsproject.git']]])
