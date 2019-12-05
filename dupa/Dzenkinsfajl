@@ -9,7 +9,7 @@ pipeline {
   triggers {
     pollSCM 'H/2 * * * *'
   }
-//  stages {
+  stages {
 //    stage('Clone git') {
 //      steps{
 //        checkout([$class: 'GitSCM', branches: [[name: brancz]],
