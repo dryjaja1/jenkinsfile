@@ -9,19 +9,19 @@ pipeline {
   triggers {
     pollSCM 'H/2 * * * *'
   }
-  stages {
-    stage('Clone git') {
-      steps{
-        checkout([$class: 'GitSCM', branches: [[name: brancz]],
-                  doGenerateSubmoduleConfigurations: false,
-                  extensions: [[$class: 'PathRestriction',
-                                excludedRegions: '',
-                                includedRegions: "${app_path}/.*"]],
-                  submoduleCfg: [],
-                  userRemoteConfigs: [[credentialsId: '9f25d4e7-848a-4b5c-af16-f6555d3d1176',
-                                       url: 'https://github.com/dryjaja1/jenkinsproject.git']]])
-      }
-    }
+//  stages {
+//    stage('Clone git') {
+//      steps{
+//        checkout([$class: 'GitSCM', branches: [[name: brancz]],
+//                  doGenerateSubmoduleConfigurations: false,
+//                  extensions: [[$class: 'PathRestriction',
+//                                excludedRegions: '',
+//                                includedRegions: "${app_path}/.*"]],
+//                  submoduleCfg: [],
+//                  userRemoteConfigs: [[credentialsId: '9f25d4e7-848a-4b5c-af16-f6555d3d1176',
+//                                       url: 'https://github.com/dryjaja1/jenkinsproject.git']]])
+//      }
+//    }
     stage('Plint') {
       steps {
         sh "echo ${build_tag}dicks"
