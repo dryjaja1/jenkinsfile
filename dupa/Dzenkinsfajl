@@ -7,7 +7,7 @@ pipeline {
     build_tag = "${build_timestamp}-${BUILD_NUMBER}"
   }
   triggers {
-    pollSCM 'H/1 * * * *'
+    pollSCM 'H/2 * * * *'
   }
   stages {
     stage('Clone git') {
