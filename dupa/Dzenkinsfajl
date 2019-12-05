@@ -29,7 +29,7 @@ pipeline {
     stage('Plint') {
       steps {
         sh "echo ${build_tag}dicks"
-        dir(app_path) {
+        dir("subdir/${app_path}") {
           sh "cat printmi"
         }
       }
