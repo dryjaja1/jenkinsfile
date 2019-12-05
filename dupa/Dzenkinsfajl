@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Plint') {
       steps {
-        sh "echo ${build_tag}"
+        sh "echo ${build_tag}dicks"
         dir(app_path) {
           sh "cat printmi"
         }
