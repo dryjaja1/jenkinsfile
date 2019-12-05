@@ -1,0 +1,35 @@
+def app_path = 'szcieszka'
+def brancz = 'master'
+
+pipeline {
+  agent any
+  environment {
+    build_tag = "${build_timestamp}-${BUILD_NUMBER}"
+  }
+  triggers {
+    pollSCM 'H/5 * * * *'
+  }
+  stages {
+    stage('Clone git') {
+      steps{
+        checkout([$class: 'GitSCM', branches: [[name: brancz]],
+                  doGenerateSubmoduleConfigurations: false,
+                  extensions: [[$class: 'PathRestriction',
+                                excludedRegions: '',
+                                includedRegions: "${app_path}/.*"]],
+                  submoduleCfg: [],
+                  userRemoteConfigs: [[credentialsId: '9f25d4e7-848a-4b5c-af16-f6555d3d1176',
+                                       url: 'https://github.com/dryjaja1/jenkinsproject.git']]])
+      }
+    }
+    stage('Plint') {
+      steps {
+        sh "echo dupa"
+        dir(app_path) {
+          sh "cat printmi"
+        }
+      }
+    }
+  }
+}
+
