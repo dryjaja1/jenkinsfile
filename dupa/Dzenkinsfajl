@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Plint') {
       steps {
-        sh "echo dupa"
+        sh "echo ${build_tag}"
         dir(app_path) {
           sh "cat printmi"
         }
